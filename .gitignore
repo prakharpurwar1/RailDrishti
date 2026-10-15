@@ -5,3 +5,4 @@ __pycache__/
 venv/
 *.egg-info/
 artifacts/data/
+artifacts/governance/audit_trail.jsonl
