@@ -1,0 +1,35 @@
+{
+  "confirmation_predictor": {
+    "accuracy": 0.9595,
+    "f1": 0.9305,
+    "precision": 0.9093,
+    "recall": 0.9526,
+    "auc": 0.9857
+  },
+  "delay_predictor": {
+    "mae": 5.73,
+    "rmse": 7.186,
+    "r2": 0.6846,
+    "mape": 0.1522
+  },
+  "fare_predictor": {
+    "mae": 179.785,
+    "rmse": 293.354,
+    "r2": 0.9904,
+    "mape": 0.0501
+  },
+  "fraud_detector": {
+    "accuracy": 0.9669,
+    "f1": 0.6395,
+    "precision": 0.5164,
+    "recall": 0.8397,
+    "auc": 0.9828
+  },
+  "recommender": {
+    "accuracy": 0.734,
+    "f1": 0.8012,
+    "precision": 0.7564,
+    "recall": 0.8516,
+    "auc": 0.782
+  }
+}

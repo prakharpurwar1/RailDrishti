@@ -1,0 +1,486 @@
+{
+  "models": {
+    "confirmation_predictor": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "confirmation_predictor__v1.joblib",
+          "path": "confirmation_predictor__v1.joblib",
+          "metrics": {
+            "accuracy": 0.9595,
+            "f1": 0.9305,
+            "precision": 0.9093,
+            "recall": 0.9526,
+            "auc": 0.9857
+          },
+          "meta": {
+            "module": "confirmation_predictor",
+            "features": [
+              "booking_days_before",
+              "month",
+              "season_index",
+              "is_peak_day",
+              "route_popularity",
+              "capacity",
+              "wl_position",
+              "rac_position",
+              "distance_km",
+              "train_type",
+              "route",
+              "travel_class",
+              "quota"
+            ],
+            "n_train": 45000,
+            "n_test": 15000,
+            "feature_importance": {
+              "wl_position": 0.9448,
+              "booking_days_before": 0.0245,
+              "capacity": 0.0209,
+              "rac_position": 0.0043,
+              "season_index": 0.0024,
+              "travel_class": 0.001,
+              "route": 0.0006,
+              "month": 0.0004,
+              "train_type": 0.0003,
+              "quota": 0.0003,
+              "distance_km": 0.0002,
+              "route_popularity": 0.0002,
+              "is_peak_day": 0.0001
+            },
+            "sla": {
+              "min_auc": 0.75,
+              "min_accuracy": 0.7,
+              "max_latency_ms": 250
+            },
+            "protected_attrs": [
+              "quota",
+              "travel_class"
+            ],
+            "drift_features": [
+              "booking_days_before",
+              "wl_position",
+              "route_popularity",
+              "season_index"
+            ],
+            "task": "classification"
+          },
+          "stage": "staging",
+          "registered_at": 1791975787.0330553
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970029.737131
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975659.533209
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975787.0330665
+        }
+      ]
+    },
+    "delay_predictor": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "delay_predictor__v1.joblib",
+          "path": "delay_predictor__v1.joblib",
+          "metrics": {
+            "mae": 5.73,
+            "rmse": 7.186,
+            "r2": 0.6846,
+            "mape": 0.1522
+          },
+          "meta": {
+            "module": "delay_predictor",
+            "features": [
+              "distance_km",
+              "month",
+              "season_index",
+              "day_of_week",
+              "scheduled_dep_hour",
+              "weather_severity",
+              "section_congestion",
+              "historical_avg_delay",
+              "train_type",
+              "route"
+            ],
+            "n_train": 9000,
+            "n_test": 3000,
+            "feature_importance": {
+              "historical_avg_delay": 0.2786,
+              "weather_severity": 0.2375,
+              "train_type": 0.2321,
+              "section_congestion": 0.1428,
+              "scheduled_dep_hour": 0.0905,
+              "distance_km": 0.0058,
+              "route": 0.004,
+              "month": 0.004,
+              "day_of_week": 0.0039,
+              "season_index": 0.0007
+            },
+            "sla": {
+              "max_mae_min": 45,
+              "max_latency_ms": 250
+            },
+            "protected_attrs": [
+              "train_type"
+            ],
+            "drift_features": [
+              "section_congestion",
+              "weather_severity",
+              "historical_avg_delay"
+            ],
+            "task": "regression"
+          },
+          "stage": "staging",
+          "registered_at": 1791975795.345313
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970037.7591252
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975672.1498191
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975795.3453228
+        }
+      ]
+    },
+    "fare_predictor": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "fare_predictor__v1.joblib",
+          "path": "fare_predictor__v1.joblib",
+          "metrics": {
+            "mae": 179.785,
+            "rmse": 293.354,
+            "r2": 0.9904,
+            "mape": 0.0501
+          },
+          "meta": {
+            "module": "fare_predictor",
+            "features": [
+              "days_before",
+              "demand_index",
+              "season_index",
+              "base_fare",
+              "distance_km",
+              "route",
+              "travel_class"
+            ],
+            "n_train": 30000,
+            "n_test": 10000,
+            "feature_importance": {
+              "base_fare": 0.9599,
+              "days_before": 0.0178,
+              "demand_index": 0.0094,
+              "season_index": 0.0074,
+              "distance_km": 0.003,
+              "route": 0.0026,
+              "travel_class": 0.0001
+            },
+            "sla": {
+              "max_mape": 0.12,
+              "max_latency_ms": 250
+            },
+            "protected_attrs": [
+              "travel_class"
+            ],
+            "drift_features": [
+              "demand_index",
+              "days_before",
+              "base_fare"
+            ],
+            "task": "regression"
+          },
+          "stage": "staging",
+          "registered_at": 1791975811.7197373
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970052.0616393
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975694.511661
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975811.7197454
+        }
+      ]
+    },
+    "fraud_detector": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "fraud_detector__v1.joblib",
+          "path": "fraud_detector__v1.joblib",
+          "metrics": {
+            "accuracy": 0.9669,
+            "f1": 0.6395,
+            "precision": 0.5164,
+            "recall": 0.8397,
+            "auc": 0.9828
+          },
+          "meta": {
+            "module": "fraud_detector",
+            "features": [
+              "account_age_days",
+              "bookings_last_24h",
+              "distinct_pnrs",
+              "ip_count",
+              "device_count",
+              "failed_payments",
+              "avg_gap_sec",
+              "payment_method"
+            ],
+            "n_train": 11250,
+            "n_test": 3750,
+            "feature_importance": {
+              "bookings_last_24h": 0.2714,
+              "failed_payments": 0.2183,
+              "device_count": 0.1981,
+              "ip_count": 0.1441,
+              "account_age_days": 0.0825,
+              "avg_gap_sec": 0.0639,
+              "distinct_pnrs": 0.0126,
+              "payment_method": 0.0091
+            },
+            "sla": {
+              "min_recall": 0.8,
+              "max_fpr": 0.05,
+              "max_latency_ms": 200
+            },
+            "protected_attrs": [],
+            "drift_features": [
+              "bookings_last_24h",
+              "ip_count",
+              "failed_payments"
+            ],
+            "task": "anomaly_classification"
+          },
+          "stage": "staging",
+          "registered_at": 1791975816.7926478
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970056.584691
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975700.5477347
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975816.7926571
+        }
+      ]
+    },
+    "recommender": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "recommender__v1.joblib",
+          "path": "recommender__v1.joblib",
+          "metrics": {
+            "accuracy": 0.734,
+            "f1": 0.8012,
+            "precision": 0.7564,
+            "recall": 0.8516,
+            "auc": 0.782
+          },
+          "meta": {
+            "module": "recommender",
+            "features": [
+              "budget",
+              "max_duration_hr",
+              "cand_fare",
+              "cand_duration_hr",
+              "cand_punctuality",
+              "cand_availability",
+              "class_match",
+              "within_budget",
+              "within_duration",
+              "preferred_class",
+              "priority",
+              "cand_class",
+              "cand_train_type"
+            ],
+            "n_train": 30000,
+            "n_test": 10000,
+            "feature_importance": {
+              "within_budget": 0.5097,
+              "within_duration": 0.1861,
+              "class_match": 0.1025,
+              "priority": 0.0437,
+              "cand_fare": 0.033,
+              "cand_availability": 0.0314,
+              "cand_punctuality": 0.0285,
+              "cand_duration_hr": 0.0226,
+              "cand_class": 0.0149,
+              "budget": 0.0129,
+              "max_duration_hr": 0.0092,
+              "cand_train_type": 0.0033,
+              "preferred_class": 0.0022
+            },
+            "sla": {
+              "min_ndcg_at_5": 0.6,
+              "max_latency_ms": 300
+            },
+            "protected_attrs": [
+              "cand_class",
+              "priority"
+            ],
+            "drift_features": [
+              "budget",
+              "max_duration_hr",
+              "cand_punctuality"
+            ],
+            "task": "classification"
+          },
+          "stage": "staging",
+          "registered_at": 1791975836.4455311
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970073.3098226
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975836.4455404
+        }
+      ]
+    },
+    "support_assistant": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "support_assistant__v1.joblib",
+          "path": "support_assistant__v1.joblib",
+          "metrics": {
+            "groundedness": 0.9512,
+            "hallucination_rate": 0.0,
+            "latency_ms": 3.26,
+            "intent_accuracy": 1.0
+          },
+          "meta": {
+            "module": "customer_support",
+            "task": "generation",
+            "features": [
+              "query"
+            ],
+            "sla": {
+              "max_hallucination_rate": 0.03,
+              "min_groundedness": 0.9,
+              "max_latency_ms": 1500
+            },
+            "protected_attrs": [
+              "language"
+            ],
+            "drift_features": [
+              "query_intent_distribution"
+            ],
+            "n_eval": 14
+          },
+          "stage": "staging",
+          "registered_at": 1791975849.0506341
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970080.3105059
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975849.0506413
+        }
+      ]
+    },
+    "travel_planner_agent": {
+      "versions": {
+        "v1": {
+          "version": "v1",
+          "filename": "travel_planner_agent__v1.joblib",
+          "path": "travel_planner_agent__v1.joblib",
+          "metrics": {
+            "task_success": 1.0,
+            "latency_ms": 489.66,
+            "avg_tool_calls": 4.17
+          },
+          "meta": {
+            "module": "travel_planner",
+            "task": "agentic",
+            "features": [
+              "query"
+            ],
+            "sla": {
+              "min_task_success": 0.85,
+              "max_latency_ms": 3000
+            },
+            "protected_attrs": [],
+            "drift_features": [
+              "tool_call_distribution"
+            ],
+            "n_eval": 6
+          },
+          "stage": "staging",
+          "registered_at": 1791975851.1418474
+        }
+      },
+      "live": "v1",
+      "history": [
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791970082.0102508
+        },
+        {
+          "action": "register",
+          "version": "v1",
+          "ts": 1791975851.1418555
+        }
+      ]
+    }
+  }
+}

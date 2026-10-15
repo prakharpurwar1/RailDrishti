@@ -1,0 +1,203 @@
+/* RailDrishti — Indian Railways theme
+   Palette: navy #0B2A66 + railway red #C8102E accent, on warm cream #F7F5F0.
+   Fixes: uneven type scale, large default gaps, default Streamlit red. */
+
+:root{
+  --ir-navy:#0B2A66; --ir-navy-600:#143A85; --ir-red:#C8102E;
+  --bg:#F7F5F0; --surface:#FFFFFF; --surface-muted:#EFEBE2;
+  --border:#E1DACB; --ink:#1A2430; --muted:#5D6675;
+  --success:#1E7A46; --warning:#B26A00; --danger:#C62828;
+  --radius:12px;
+}
+
+/* App shell */
+.stApp{ background:var(--bg); }
+[data-testid="stHeader"]{ background:transparent; }
+.block-container{ padding-top:1.6rem !important; padding-bottom:2.5rem !important; max-width:1180px; }
+
+/* Tighten vertical rhythm (kills the large gaps) */
+[data-testid="stVerticalBlock"]{ gap:0.6rem; }
+[data-testid="stVerticalBlockBorderWrapper"]{ gap:0.6rem; }
+
+/* Headings + body — one consistent scale */
+h1{ font-size:1.75rem !important; font-weight:700; color:var(--ink); }
+h2{ font-size:1.3rem !important; font-weight:700; color:var(--ink); }
+h3{ font-size:1.05rem !important; font-weight:600; color:var(--ink); }
+p, li, .stMarkdown{ font-size:0.95rem; line-height:1.55; color:var(--ink); }
+[data-testid="stCaptionContainer"], .stCaption, small{ font-size:0.8rem !important; color:var(--muted) !important; }
+
+/* Metric cards (uniform height + sane sizes) */
+[data-testid="stMetric"]{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:14px 16px;
+}
+[data-testid="stMetricValue"]{ font-size:1.5rem !important; font-weight:700; color:var(--ink); }
+[data-testid="stMetricLabel"]{ font-size:0.72rem !important; font-weight:600; text-transform:uppercase;
+  letter-spacing:0.06em; color:var(--muted) !important; }
+
+/* Tabs: navy text, railway-red underline, no default red */
+.stTabs [data-baseweb="tab-list"]{ gap:4px; border-bottom:1px solid var(--border); }
+.stTabs [data-baseweb="tab"]{ font-size:0.9rem; font-weight:600; color:var(--muted); padding:8px 12px; }
+.stTabs [aria-selected="true"]{ color:var(--ir-navy) !important; }
+.stTabs [data-baseweb="tab-highlight"]{ background:var(--ir-red) !important; }
+
+/* Buttons: base styling & resilient selector coverage (supports both legacy and modern Streamlit) */
+.stButton > button,
+[data-testid^="stBaseButton-"] {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Primary buttons — Indian-Railways navy (#0B2A66) with crisp white text */
+.stButton > button[kind="primary"],
+.stButton > button[data-testid="stBaseButton-primary"],
+[data-testid="stBaseButton-primary"],
+button[kind="primary"] {
+  background-color: var(--ir-navy) !important;
+  background: var(--ir-navy) !important;
+  border: 1px solid var(--ir-navy) !important;
+  color: #FFFFFF !important;
+}
+
+/* Force white text on any text child of primary buttons */
+.stButton > button[kind="primary"] *,
+.stButton > button[data-testid="stBaseButton-primary"] *,
+[data-testid="stBaseButton-primary"] *,
+button[kind="primary"] * {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Primary button hover, active, and focus states (#143A85 darker navy with white text) */
+.stButton > button[kind="primary"]:hover,
+.stButton > button[data-testid="stBaseButton-primary"]:hover,
+[data-testid="stBaseButton-primary"]:hover,
+button[kind="primary"]:hover,
+.stButton > button[kind="primary"]:active,
+.stButton > button[data-testid="stBaseButton-primary"]:active,
+[data-testid="stBaseButton-primary"]:active,
+button[kind="primary"]:active,
+.stButton > button[kind="primary"]:focus,
+.stButton > button[data-testid="stBaseButton-primary"]:focus,
+[data-testid="stBaseButton-primary"]:focus,
+button[kind="primary"]:focus,
+.stButton > button[kind="primary"]:focus-visible,
+.stButton > button[data-testid="stBaseButton-primary"]:focus-visible,
+[data-testid="stBaseButton-primary"]:focus-visible,
+button[kind="primary"]:focus-visible {
+  background-color: var(--ir-navy-600) !important;
+  background: var(--ir-navy-600) !important;
+  border-color: var(--ir-navy-600) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 0 2px rgba(20, 58, 133, 0.3) !important;
+}
+
+.stButton > button[kind="primary"]:hover *,
+.stButton > button[data-testid="stBaseButton-primary"]:hover *,
+[data-testid="stBaseButton-primary"]:hover *,
+button[kind="primary"]:hover *,
+.stButton > button[kind="primary"]:active *,
+.stButton > button[data-testid="stBaseButton-primary"]:active *,
+[data-testid="stBaseButton-primary"]:active *,
+button[kind="primary"]:active *,
+.stButton > button[kind="primary"]:focus *,
+.stButton > button[data-testid="stBaseButton-primary"]:focus *,
+[data-testid="stBaseButton-primary"]:focus *,
+button[kind="primary"]:focus *,
+.stButton > button[kind="primary"]:focus-visible *,
+.stButton > button[data-testid="stBaseButton-primary"]:focus-visible *,
+[data-testid="stBaseButton-primary"]:focus-visible *,
+button[kind="primary"]:focus-visible * {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Secondary buttons — readable dark ink on light surface */
+.stButton > button[kind="secondary"],
+.stButton > button[data-testid="stBaseButton-secondary"],
+[data-testid="stBaseButton-secondary"],
+button[kind="secondary"],
+.stButton > button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]) {
+  background-color: var(--surface) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--ink) !important;
+}
+
+.stButton > button[kind="secondary"] *,
+.stButton > button[data-testid="stBaseButton-secondary"] *,
+[data-testid="stBaseButton-secondary"] *,
+button[kind="secondary"] *,
+.stButton > button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]) * {
+  color: var(--ink) !important;
+  fill: var(--ink) !important;
+}
+
+.stButton > button[kind="secondary"]:hover,
+.stButton > button[data-testid="stBaseButton-secondary"]:hover,
+[data-testid="stBaseButton-secondary"]:hover,
+button[kind="secondary"]:hover,
+.stButton > button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]):hover,
+.stButton > button[kind="secondary"]:active,
+.stButton > button[data-testid="stBaseButton-secondary"]:active,
+[data-testid="stBaseButton-secondary"]:active,
+button[kind="secondary"]:active,
+.stButton > button[kind="secondary"]:focus,
+.stButton > button[data-testid="stBaseButton-secondary"]:focus,
+[data-testid="stBaseButton-secondary"]:focus,
+button[kind="secondary"]:focus {
+  background-color: var(--surface-muted) !important;
+  background: var(--surface-muted) !important;
+  border-color: var(--muted) !important;
+  color: var(--ir-navy) !important;
+}
+
+.stButton > button[kind="secondary"]:hover *,
+.stButton > button[data-testid="stBaseButton-secondary"]:hover *,
+[data-testid="stBaseButton-secondary"]:hover *,
+button[kind="secondary"]:hover *,
+.stButton > button:not([kind="primary"]):not([data-testid="stBaseButton-primary"]):hover *,
+.stButton > button[kind="secondary"]:active *,
+.stButton > button[data-testid="stBaseButton-secondary"]:active *,
+[data-testid="stBaseButton-secondary"]:active *,
+button[kind="secondary"]:active *,
+.stButton > button[kind="secondary"]:focus *,
+.stButton > button[data-testid="stBaseButton-secondary"]:focus *,
+[data-testid="stBaseButton-secondary"]:focus *,
+button[kind="secondary"]:focus * {
+  color: var(--ir-navy) !important;
+  fill: var(--ir-navy) !important;
+}
+
+/* Sidebar: deep navy with light text */
+[data-testid="stSidebar"]{ background:var(--ir-navy); }
+[data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3{ color:#fff; }
+[data-testid="stSidebar"] p, [data-testid="stSidebar"] label, [data-testid="stSidebar"] span{ color:#E7ECF3; }
+[data-testid="stSidebar"] [data-testid="stMetric"]{ background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.18); }
+[data-testid="stSidebar"] [data-testid="stMetricValue"]{ color:#fff; }
+[data-testid="stSidebar"] [data-testid="stMetricLabel"]{ color:#AEBBD0 !important; }
+[data-testid="stSidebar"] hr{ border-color:rgba(255,255,255,0.22); }
+
+/* Bordered containers become cards */
+[data-testid="stVerticalBlockBorderWrapper"]{
+  border:1px solid var(--border) !important; border-radius:var(--radius); background:var(--surface); padding:6px;
+}
+
+/* Chat bubbles */
+[data-testid="stChatMessage"]{ border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); }
+
+/* Status pills */
+.pill{ display:inline-block; padding:2px 10px; border-radius:999px; font-size:0.72rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.04em; }
+.pill-ok{ background:#E4F2E8; color:var(--success); }
+.pill-warn{ background:#FBEEDA; color:var(--warning); }
+.pill-bad{ background:#FBE3E3; color:var(--danger); }
+
+/* Brand header block */
+.rd-header{ display:flex; align-items:center; gap:12px; margin-bottom:6px; }
+.rd-logo{ width:38px; height:38px; border-radius:50%; background:var(--ir-navy); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem;
+  border:2px solid var(--ir-red); }
+.rd-title{ font-size:1.75rem; font-weight:700; color:var(--ink); line-height:1; }
+.rd-sub{ font-size:0.9rem; color:var(--muted); margin-top:3px; }
