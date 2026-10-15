@@ -87,15 +87,41 @@ brand_header("RailDrishti",
 # Sidebar
 # ---------------------------------------------------------------------------
 with st.sidebar:
-    st.markdown("### Navigation")
+    st.markdown("""
+        <div class="sidebar-brand">
+            <div class="rd-logo" style="width:34px; height:34px; font-size:0.82rem; flex-shrink:0;">IR</div>
+            <div>
+                <div class="sidebar-brand-title">RailDrishti</div>
+                <div class="sidebar-brand-sub">Intelligent Railways</div>
+            </div>
+        </div>
+        <div class="sidebar-section-title">NAVIGATION</div>
+    """, unsafe_allow_html=True)
     view = st.radio("View", ["🧳 Passenger", "🛡️ AI Governance Control Room"],
                     label_visibility="collapsed")
-    st.divider()
     rep = platform.report()
-    with st.container(border=True):
-        st.metric("Models governed", rep["models_governed"])
-        st.metric("Platform status", rep["overall"].upper())
-        st.metric("Audit chain", "intact ✅" if rep["audit_chain_intact"] else "broken ❌")
+    audit_pill = (
+        '<span class="pill pill-ok">INTACT</span>'
+        if rep["audit_chain_intact"]
+        else '<span class="pill pill-bad">BROKEN</span>'
+    )
+    st.markdown(f"""
+        <div class="sidebar-section-title">PLATFORM STATUS</div>
+        <div class="sidebar-status-card">
+            <div class="sidebar-status-row">
+                <span class="sidebar-status-label">Models Governed</span>
+                <span class="sidebar-status-val">{rep["models_governed"]}</span>
+            </div>
+            <div class="sidebar-status-row">
+                <span class="sidebar-status-label">Platform Status</span>
+                <span class="sidebar-status-val">{rep["overall"].upper()}</span>
+            </div>
+            <div class="sidebar-status-row">
+                <span class="sidebar-status-label">Audit Chain</span>
+                <span class="sidebar-status-val">{audit_pill}</span>
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
 
 
 # ===========================================================================
